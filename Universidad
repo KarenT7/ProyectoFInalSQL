@@ -1,0 +1,11 @@
+﻿SELECT c.categoria
+
+   FROM categorias c INNER JOIN productos p 
+  ON c.id = p.categoria_id INNER JOIN detalles d 
+  ON p.id = d.producto_id,
+
+ DELETE  
+  FROM categorias, producto , detalles
+  WHERE categorias.id=producto_id AND detalles.producto_id=producto_id
+ GROUP BY c.categoria
+  
