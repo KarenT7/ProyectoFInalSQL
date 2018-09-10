@@ -52,7 +52,30 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>260 px</X>
+              <X>240 px</X>
+              <Y>310 px</Y>
+            </Location>
+            <Size>
+              <Width>163 px</Width>
+              <Height>110 px</Height>
+            </Size>
+            <DbOid>
+              <Path>universidad.clase</Path>
+              <TypeName>Table</TypeName>
+            </DbOid>
+            <Compartments>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
+              <IndexesCollapsed>True</IndexesCollapsed>
+              <TriggersCollapsed>True</TriggersCollapsed>
+            </Compartments>
+          </Model>
+          <Model xsi:type="TableModel">
+            <CustomProperties>
+              <OID>2</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Location>
+              <X>270 px</X>
               <Y>0 px</Y>
             </Location>
             <Size>
@@ -71,13 +94,9 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>2</OID>
+              <OID>3</OID>
               <Parent>0</Parent>
             </CustomProperties>
-            <Location>
-              <X>-9.99999999999997 px</X>
-              <Y>0 px</Y>
-            </Location>
             <Size>
               <Width>221 px</Width>
               <Height>263 px</Height>
@@ -92,13 +111,59 @@
               <TriggersCollapsed>True</TriggersCollapsed>
             </Compartments>
           </Model>
+          <Model xsi:type="TableModel">
+            <CustomProperties>
+              <OID>4</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Location>
+              <X>0 px</X>
+              <Y>310 px</Y>
+            </Location>
+            <Size>
+              <Width>200 px</Width>
+              <Height>127 px</Height>
+            </Size>
+            <DbOid>
+              <Path>universidad.horarios</Path>
+              <TypeName>Table</TypeName>
+            </DbOid>
+            <Compartments>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
+              <IndexesCollapsed>True</IndexesCollapsed>
+              <TriggersCollapsed>True</TriggersCollapsed>
+            </Compartments>
+          </Model>
+          <Model xsi:type="TableModel">
+            <CustomProperties>
+              <OID>5</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Location>
+              <X>530 px</X>
+              <Y>0 px</Y>
+            </Location>
+            <Size>
+              <Width>214 px</Width>
+              <Height>178 px</Height>
+            </Size>
+            <DbOid>
+              <Path>universidad.transporte</Path>
+              <TypeName>Table</TypeName>
+            </DbOid>
+            <Compartments>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
+              <IndexesCollapsed>True</IndexesCollapsed>
+              <TriggersCollapsed>True</TriggersCollapsed>
+            </Compartments>
+          </Model>
         </Children>
         <ViewPort>
           <ScaleMode>Free</ScaleMode>
           <Scale>1</Scale>
           <Location>
-            <X>-409.299987792969 px</X>
-            <Y>-168.899993896484 px</Y>
+            <X>-282.799987792969 px</X>
+            <Y>-81.8999938964844 px</Y>
           </Location>
         </ViewPort>
       </Model>
