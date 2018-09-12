@@ -17,12 +17,9 @@ public class RegistroEstudiante {
 		int telefono=InputTypesUniversidad.readInt("Telefono:", scanner);
 		String Direccion=InputTypesUniversidad.readString("Direccion:", scanner);
         boolean PAA=InputTypesUniversidad.readBoolean("Dio la Prueba de Aptitud Academica? true(si)/false(no)", scanner);
-		int Semestre=InputTypesUniversidad.readInt("Semestre al que desea inscribirse: ", scanner);
-		String Campus=InputTypesUniversidad.readString("Campus:", scanner);
-		String Carrera=InputTypesUniversidad.readString("Carrera:", scanner);
+        int IdClase=InputTypesUniversidad.readInt("Codigo de la clase:", scanner);				
 
-
-		return new Estudiante(codigoEstudiante,codigoCuenta, Nombre,Apellido, CI, fechaNacimiento, telefono, Direccion, PAA, Semestre, Campus, Carrera);
+		return new Estudiante(codigoEstudiante,codigoCuenta, Nombre,Apellido, fechaNacimiento, telefono, Direccion, PAA, CI, IdClase);
 	}
 
 }
