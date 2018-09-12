@@ -448,7 +448,7 @@
             </Location>
             <Size>
               <Width>136 px</Width>
-              <Height>144 px</Height>
+              <Height>127 px</Height>
             </Size>
             <DbOid>
               <Path>universidad.notasyfaltas</Path>
@@ -658,7 +658,7 @@
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>72 px</Y>
+                  <Y>63.5 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
@@ -683,7 +683,7 @@
             <BendPoints>
               <PointD>
                 <X>1100 px</X>
-                <Y>532 px</Y>
+                <Y>523.5 px</Y>
               </PointD>
               <PointD>
                 <X>1100 px</X>
@@ -711,7 +711,7 @@
               <Port xsi:type="LinkPort">
                 <Location>
                   <X>119.625 px</X>
-                  <Y>150 px</Y>
+                  <Y>141.5 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
@@ -730,10 +730,10 @@
         </Children>
         <ViewPort>
           <ScaleMode>Free</ScaleMode>
-          <Scale>0.64</Scale>
+          <Scale>0.6</Scale>
           <Location>
-            <X>164.062503667083 px</X>
-            <Y>143.750002654269 px</Y>
+            <X>13.3333330021964 px</X>
+            <Y>-156.666660441293 px</Y>
           </Location>
         </ViewPort>
       </Model>
