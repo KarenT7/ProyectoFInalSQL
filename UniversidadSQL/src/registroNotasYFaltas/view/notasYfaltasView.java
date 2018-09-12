@@ -49,15 +49,16 @@ public class notasYfaltasView {
 		NotasYfaltas notasYfaltas;
 		int faltas;
 		int parcial;
-		int notaFinal = 0;
+		int notaFinal ;
 		int idClase = InputTypes.readInt("Identificacion del Código de la Clase: ", scanner);
 		String sql = "select * from clase where id = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, idClase);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			faltas = resultSet.getInt("codigo del docente");
-			parcial = resultSet.getInt("codigo identificacion del semestre");
+			faltas = resultSet.getInt("Faltas");
+			parcial = resultSet.getInt("Parcial");
+			notaFinal = resultSet.getInt("NotaFinal");
 			notasYfaltas = new NotasYfaltas(idClase, faltas, parcial, notaFinal);
 		} else {
 			throw new NoExisteClase();
@@ -82,8 +83,8 @@ public class notasYfaltasView {
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
-			notasYfaltas = new NotasYfaltas(resultSet.getInt("id Clase"), resultSet.getInt("faltas"),
-					resultSet.getInt("parcial"), resultSet.getInt("Nota Final"));
+			notasYfaltas = new NotasYfaltas(resultSet.getInt("IdClase"), resultSet.getInt("Faltas"),
+					resultSet.getInt("Parcial"), resultSet.getInt("NotaFinal"));
 			System.out.println(notasYfaltas);
 		}
 	}

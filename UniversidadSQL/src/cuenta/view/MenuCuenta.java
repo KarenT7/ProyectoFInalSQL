@@ -3,22 +3,21 @@ package cuenta.view;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-
-import clase.entity.Cuenta;
-import clase.entity.NoExisteClase;
+import cuenta.entity.Cuenta;
+import cuenta.entity.NoExisteCuenta;
 import universidad.view.InputTypes;
 
 public class MenuCuenta {
-	private static int encabezadoMenuClase(Scanner scanner) {
+	private static int encabezadoMenuCuenta(Scanner scanner) {
 		int opcion;
 		while (true) {
 			System.out.println("--------------------------------------");
 			System.out.println("	Ingrese una opcion	: ");
 			System.out.println("--------------------------------------");
-			System.out.println("1.Ingresar Clase: ");
-			System.out.println("2.Listar Clase: ");
-			System.out.println("3.Eliminar Clase:");
-			System.out.println("4. Modificar Clase ");
+			System.out.println("1.Ingresar Cuenta: ");
+			System.out.println("2.Listar Cuenta: ");
+			System.out.println("3.Eliminar Cuenta:");
+			System.out.println("4. Modificar Cuenta ");
 			// System.out.println("5. Productos por Categoría ");
 			System.out.println("0.Salir");
 			System.out.println();
@@ -31,38 +30,38 @@ public class MenuCuenta {
 
 	}
 
-	public static void menuClase(Scanner scanner, CuentaView claseV) {
+	public static void menuCuenta(Scanner scanner, CuentaView cuentaV) {
 
 		boolean salir = false;
 		while (!salir) {
-			switch (encabezadoMenuClase(scanner)) {
+			switch (encabezadoMenuCuenta(scanner)) {
 			case 0:
 				salir = true;
 				break;
 			case 1:
-				claseV.addCuenta();
+				cuentaV.addCuenta();
 				break;
 			case 2:
 				try {
-					claseV.listarClase();
-				} catch (SQLException e2) {
+					cuentaV.listarCuenta();
+				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e2.printStackTrace();
+					e.printStackTrace();
 				}
 				break;
 			case 3:
 				try {
-					claseV.deleteCuenta();
-				} catch (SQLException e1) {
+					cuentaV.deleteCuenta();
+				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e.printStackTrace();
 				}
 			
 			case 4:
 				try {
-					claseV.updateCuenta();
-				} catch (NoExisteClase | SQLException e) {
-					System.out.println("No existe clase!");
+					cuentaV.updateCuenta();
+				} catch (NoExisteCuenta | SQLException e) {
+					System.out.println("No existe cuenta!");
 				}
 				break;
 			/*
@@ -80,20 +79,23 @@ public class MenuCuenta {
 			System.out.println("--------------------------------------");
 			System.out.println("	Ingrese una opcion	: ");
 			System.out.println("--------------------------------------");
-			System.out.println("1. Modificar codigo docente");
-			System.out.println("2. Modificar la identificacion del semestre ");
+			System.out.println("1. Modificar Saldo a pagar");
+			System.out.println("2. Modificar el importe pagado ");
+			System.out.println("3. Modificar el descuento por beca ");
+			System.out.println("4. Modificar el plan de pagos ");
+
 			System.out.println("0. Salir");
 			System.out.println();
 
 			opcion = InputTypes.readInt("¿Su opción? ", scanner);
 
-			if (opcion >= 0 && opcion <= 2) {
+			if (opcion >= 0 && opcion <= 4) {
 				return opcion;
 			}
 		}
 	}
 
-	public static void menuModificar(Scanner scanner, Cuenta clase) {
+	public static void menuModificar(Scanner scanner, Cuenta cuenta) {
 		boolean salir = false;
 
 		while (!salir) {
@@ -102,11 +104,19 @@ public class MenuCuenta {
 				salir = true;
 				break;
 			case 1:
-				clase.setCodigoDocente(InputTypes.readInt("Ingrese el nuevo codigo del docente: ", scanner));
+				cuenta.setSaldoApagar(InputTypes.readDouble("Ingrese el nuevo saldo a pagar: ", scanner));
 				break;
 			case 2:
-				clase.setIdSemestre(
-						InputTypes.readInt("Ingrese el nuevo codigo de identificacion del semestre: ", scanner));
+				cuenta.setImportePagado(
+						InputTypes.readDouble("Ingrese el nuevo Importe Pagado: ", scanner));
+				break;
+			case 3:
+				cuenta.setDescuentoBeca(
+						InputTypes.readDouble("Ingrese el nuevo descuento por Beca: ", scanner));
+				break;
+			case 4:
+				cuenta.setPlanDePagos(
+						InputTypes.readString("Ingrese el nuevo plan de Pagos: ", scanner));
 				break;
 			}
 		}

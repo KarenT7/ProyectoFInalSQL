@@ -52,39 +52,44 @@ public class CuentaView {
 		double importePagado;
 		double descuentoBeca;
 		String planDePagos;
-		int codigoCuenta = InputTypes.readInt("Identificacion del Código de la Clase: ", scanner);
-		String sql = "select * from clase where código = ?";
+		int codigoCuenta = InputTypes.readInt("Identificacion del Código de la cuenta: ", scanner);
+		String sql = "select * from cuenta where código = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, codigoCuenta);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			saldoApagar = resultSet.getInt("codigo del docente");
-			importe = resultSet.getInt("codigo identificacion del semestre");
-			cuenta = new Cuenta(codigoCuenta, saldoApagar , importe, notaFinal);
+			saldoApagar = resultSet.getDouble("SaldoPagar");
+			importePagado = resultSet.getDouble("ImportePagado");
+			descuentoBeca = resultSet.getDouble("DescuentoBeca");
+			planDePagos = resultSet.getString("PlanDePagos");
+			
+			cuenta = new Cuenta(codigoCuenta, saldoApagar , importePagado, descuentoBeca, planDePagos);
 		} else {
-			throw new NoExisteClase();
+			throw new NoExisteCuenta();
 		}
 
-		System.out.println(clase);
-		MenuCuenta.menuModificar(scanner, clase);
+		System.out.println(cuenta);
+		MenuCuenta.menuModificar(scanner, cuenta);
 
 		sql = "update clase set codigoDocente = ?, idSemestre = ? where id = ?";
 
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, clase.getCodigoDocente());
-		conexion.getSentencia().setInt(2, clase.getIdSemestre());
+		conexion.getSentencia().setDouble(1, cuenta.getSaldoApagar());
+		conexion.getSentencia().setDouble(2, cuenta.getImportePagado());
+		conexion.getSentencia().setDouble(3, cuenta.getDescuentoBeca());
+		conexion.getSentencia().setString(3, cuenta.getPlanDePagos());
+		
 		conexion.modificacion();
 	}
 
-	public void listarClase() throws SQLException {
-		Cuenta clase;
-		String sql = "select * from clase ";
+	public void listarCuenta() throws SQLException {
+		Cuenta cuenta;
+		String sql = "select * from cuenta ";
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
-			clase = new Cuenta(resultSet.getInt("id Clase"), resultSet.getInt("codigo Docente"),
-					resultSet.getInt("id Semestre"));
-			System.out.println(clase);
+			cuenta = new Cuenta(resultSet.getInt("CodigoCuenta"),resultSet.getDouble("SaldoPagar"), resultSet.getDouble("ImportePagado"), resultSet.getDouble("DescuentoBeca"), resultSet.getString("PlanDePagos"));
+			System.out.println(cuenta);
 		}
 	}
 }

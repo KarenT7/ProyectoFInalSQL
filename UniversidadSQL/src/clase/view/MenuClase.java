@@ -45,9 +45,9 @@ public class MenuClase {
 			case 2:
 				try {
 					claseV.listarClase();
-				} catch (SQLException e2) {
+				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e2.printStackTrace();
+					e.printStackTrace();
 				}
 				break;
 			case 3:

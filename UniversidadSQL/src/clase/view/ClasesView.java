@@ -35,10 +35,11 @@ public class ClasesView {
 	
 		public void deleteClase() throws SQLException {
 			int idClase = InputTypes.readInt("Código identificacion de la clase: ", scanner);
-			String sql = "delete " + "from clase " + "where id = ?";
+			String sql = "delete " + "from clase " + "where idClase = ?";
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, idClase);
 			conexion.modificacion();
+
 		}
 
 	
@@ -54,8 +55,8 @@ public class ClasesView {
 		conexion.getSentencia().setInt(1, idClase);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			codigoDocente = resultSet.getInt("codigo del docente");
-			idSemestre = resultSet.getInt("codigo identificacion del semestre");
+			codigoDocente = resultSet.getInt("CodigoDocente");
+			idSemestre = resultSet.getInt("IdSemestre");
 			clase = new Cuenta(idClase, codigoDocente , idSemestre);
 		} else {
 			throw new NoExisteClase();
@@ -64,7 +65,7 @@ public class ClasesView {
 		System.out.println(clase);
 		MenuClase.menuModificar(scanner, clase);
 
-		sql = "update clase set codigoDocente = ?, idSemestre = ? where id = ?";
+		sql = "update clase set codigoDocente = ?, idSemestre = ? where codigoDocente = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, clase.getCodigoDocente());
@@ -78,8 +79,8 @@ public class ClasesView {
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
-			clase = new Cuenta(resultSet.getInt("id Clase"), resultSet.getInt("codigo Docente"),
-					resultSet.getInt("id Semestre"));
+			clase = new Cuenta(resultSet.getInt("IdClase"), resultSet.getInt("CodigoDocente"),
+					resultSet.getInt("IdSemestre"));
 			System.out.println(clase);
 		}
 	}

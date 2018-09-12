@@ -55,8 +55,8 @@ public class SemestreView {
 		conexion.getSentencia().setInt(1, idSemestre);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			modulo = resultSet.getInt("modulo");
-			anio = resultSet.getDate("anio");
+			modulo = resultSet.getInt("Modulo");
+			anio = resultSet.getDate("Año");
 			semestre = new Semestre(idSemestre, modulo , anio);
 		} else {
 	//		throw new NoExisteClase();
@@ -79,8 +79,8 @@ public class SemestreView {
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
-			semestre = new Semestre(resultSet.getInt("id Semestre"), resultSet.getInt("modulo"),
-					resultSet.getDate("anio"));
+			semestre = new Semestre(resultSet.getInt("IdSemestre"), resultSet.getInt("Modulo"),
+					resultSet.getDate("Año"));
 			System.out.println(semestre);
 		}
 	}
