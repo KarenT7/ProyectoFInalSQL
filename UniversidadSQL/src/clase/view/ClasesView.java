@@ -5,7 +5,8 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Scanner;
-import clase.entity.Cuenta;
+
+import clase.entity.Clase;
 import clase.entity.NoExisteClase;
 import universidad.control.Conexion;
 import universidad.view.InputTypes;
@@ -20,8 +21,8 @@ public class ClasesView {
 	}
 
 	public void addClase() {
-		Cuenta clase = RegistroClase.ingresarClase(scanner);
-			String sql = "Insert into Clase ( codigoDocente, idSemestre)" + "values(?,?)";
+		Clase clase = RegistroClase.ingresarClase(scanner);
+			String sql = "Insert into clase ( CodigoDocente, IdSemestre)" + "values(?,?)";
 			try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, clase.getIdClase());
@@ -46,18 +47,18 @@ public class ClasesView {
 
 	public void updateClase() throws NoExisteClase, SQLException {
 		ResultSet resultSet;
-		Cuenta clase;
+		Clase clase;
 		int  codigoDocente;
 		int idSemestre;
 		int idClase = InputTypes.readInt("Identificacion del Código de la Clase: ", scanner);
-		String sql = "select * from clase where código = ?";
+		String sql = "select * from clase where IdClase = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, idClase);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
 			codigoDocente = resultSet.getInt("CodigoDocente");
 			idSemestre = resultSet.getInt("IdSemestre");
-			clase = new Cuenta(idClase, codigoDocente , idSemestre);
+			clase = new Clase(idClase, codigoDocente , idSemestre);
 		} else {
 			throw new NoExisteClase();
 		}
@@ -65,21 +66,23 @@ public class ClasesView {
 		System.out.println(clase);
 		MenuClase.menuModificar(scanner, clase);
 
-		sql = "update clase set codigoDocente = ?, idSemestre = ? where codigoDocente = ?";
+		sql = "update clase set codigoDocente = ?, idSemestre = ? where IdClase = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, clase.getCodigoDocente());
 		conexion.getSentencia().setInt(2, clase.getIdSemestre());
+		conexion.getSentencia().setInt(2, clase.getIdClase());
+
 		conexion.modificacion();
 	}
 
 	public void listarClase() throws SQLException {
-		Cuenta clase;
+		Clase clase;
 		String sql = "select * from clase ";
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
-			clase = new Cuenta(resultSet.getInt("IdClase"), resultSet.getInt("CodigoDocente"),
+			clase = new Clase(resultSet.getInt("IdClase"), resultSet.getInt("CodigoDocente"),
 					resultSet.getInt("IdSemestre"));
 			System.out.println(clase);
 		}

@@ -2,11 +2,11 @@ package clase.view;
 
 import java.util.Scanner;
 
-import clase.entity.Cuenta;
+import clase.entity.Clase;
 import universidad.view.InputTypes;
 
 public class RegistroClase {
-	public static Cuenta ingresarClase(Scanner scanner)
+	public static Clase ingresarClase(Scanner scanner)
 	{
 	
 		int idClase=InputTypes.readInt("Ingrese su codigo de identificacion de la clase :", scanner);
@@ -14,7 +14,7 @@ public class RegistroClase {
 		int idSemestre=InputTypes.readInt("Ingrese el codigo de identificacion del semestre :", scanner);
 
 
-		return new Cuenta(idClase, codigoDocente, idSemestre);
+		return new Clase(idClase, codigoDocente, idSemestre);
 	}
 
 }

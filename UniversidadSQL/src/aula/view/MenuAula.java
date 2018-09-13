@@ -1,23 +1,22 @@
-package clase.view;
+package aula.view;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import clase.entity.Clase;
-import clase.entity.NoExisteClase;
+import aula.entity.Aula;
 import universidad.view.InputTypes;
 
-public class MenuClase {
-	private static int encabezadoMenuClase(Scanner scanner) {
+public class MenuAula {
+	private static int encabezadoMenuAula(Scanner scanner) {
 		int opcion;
 		while (true) {
 			System.out.println("--------------------------------------");
 			System.out.println("	Ingrese una opcion	: ");
 			System.out.println("--------------------------------------");
-			System.out.println("1.Ingresar Clase: ");
-			System.out.println("2.Listar Clase: ");
-			System.out.println("3.Eliminar Clase:");
-			System.out.println("4. Modificar Clase ");
+			System.out.println("1.Ingresar Aula: ");
+			System.out.println("2.Listar Aula: ");
+			System.out.println("3.Eliminar Aula:");
+			System.out.println("4. Modificar Aula ");
 			// System.out.println("5. Productos por Categoría ");
 			System.out.println("0.Salir");
 			System.out.println();
@@ -30,20 +29,20 @@ public class MenuClase {
 
 	}
 
-	public static void menuClase(Scanner scanner, ClasesView claseV) {
+	public static void menuClase(Scanner scanner, AulaView aulaV) {
 
 		boolean salir = false;
 		while (!salir) {
-			switch (encabezadoMenuClase(scanner)) {
+			switch (encabezadoMenuAula(scanner)) {
 			case 0:
 				salir = true;
 				break;
 			case 1:
-				claseV.addClase();
+				aulaV.addAula();
 				break;
 			case 2:
 				try {
-					claseV.listarClase();
+					aulaV.listarAula();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -51,16 +50,16 @@ public class MenuClase {
 				break;
 			case 3:
 				try {
-					claseV.deleteClase();
-				} catch (SQLException e1) {
+					aulaV.deleteAula();
+				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e.printStackTrace();
 				}
 			
 			case 4:
 				try {
-					claseV.updateClase();
-				} catch (NoExisteClase | SQLException e) {
+					aulaV.updateAula();
+				} catch ( SQLException e) {
 					System.out.println("No existe clase!");
 				}
 				break;
@@ -71,6 +70,9 @@ public class MenuClase {
 			}
 		}
 	}
+	private int  idAula;	
+	private int idClase;
+
 
 	private static int encabezadoModificar(Scanner scanner) {
 		int opcion;
@@ -79,20 +81,19 @@ public class MenuClase {
 			System.out.println("--------------------------------------");
 			System.out.println("	Ingrese una opcion	: ");
 			System.out.println("--------------------------------------");
-			System.out.println("1. Modificar codigo docente");
-			System.out.println("2. Modificar la identificacion del semestre ");
+			System.out.println("1. Modificar codigo de identificacion del aula ");
 			System.out.println("0. Salir");
 			System.out.println();
 
 			opcion = InputTypes.readInt("¿Su opción? ", scanner);
 
-			if (opcion >= 0 && opcion <= 2) {
+			if (opcion >= 0 && opcion <= 1) {
 				return opcion;
 			}
 		}
 	}
 
-	public static void menuModificar(Scanner scanner, Clase clase) {
+	public static void menuModificar(Scanner scanner, Aula aula) {
 		boolean salir = false;
 
 		while (!salir) {
@@ -101,12 +102,9 @@ public class MenuClase {
 				salir = true;
 				break;
 			case 1:
-				clase.setCodigoDocente(InputTypes.readInt("Ingrese el nuevo codigo del docente: ", scanner));
+				aula.setIdClase(InputTypes.readInt("Ingrese el nuevo codigo de identificacion del aula: ", scanner));
 				break;
-			case 2:
-				clase.setIdSemestre(
-						InputTypes.readInt("Ingrese el nuevo codigo de identificacion del semestre: ", scanner));
-				break;
+		
 			}
 		}
 	}
