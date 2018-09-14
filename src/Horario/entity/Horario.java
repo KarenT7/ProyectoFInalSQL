@@ -1,14 +1,16 @@
 package Horario.entity;
 
+import java.sql.Date;
+
 public class Horario {
 	private int CodigoHorario;
 	private String Paralelo;
     private int IdClase;
     private String Modalidad;
-    private int fechaInicion;
-    private int fechaFinal;
-	public Horario(int codigoHorario, String paralelo, int idClase, String modalidad, int fechaInicion,
-			int fechaFinal) {
+    private Date fechaInicion;
+    private Date fechaFinal;
+	public Horario(int codigoHorario, String paralelo, int idClase, String modalidad, Date fechaInicion,
+			Date fechaFinal) {
 		super();
 		CodigoHorario = codigoHorario;
 		Paralelo = paralelo;
@@ -41,16 +43,16 @@ public class Horario {
 	public void setModalidad(String modalidad) {
 		Modalidad = modalidad;
 	}
-	public int getFechaInicion() {
+	public Date getFechaInicion() {
 		return fechaInicion;
 	}
-	public void setFechaInicion(int fechaInicion) {
+	public void setFechaInicion(Date fechaInicion) {
 		this.fechaInicion = fechaInicion;
 	}
-	public int getFechaFinal() {
+	public java.sql.Date getFechaFinal() {
 		return fechaFinal;
 	}
-	public void setFechaFinal(int fechaFinal) {
+	public void setFechaFinal(Date fechaFinal) {
 		this.fechaFinal = fechaFinal;
 	}
 	@Override

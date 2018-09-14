@@ -1,12 +1,11 @@
 package Horario.view;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.Scanner;
 
 import Control.Conexion;
-import Docente.entity.Docente;
 import Docente.entity.DocenteSinRegistro;
 import General.InputTypesUniversidad;
 import Horario.entity.Horario;
@@ -27,8 +26,8 @@ public class HorarioView {
 			conexion.getSentencia().setString(2, horario.getParalelo());
 			conexion.getSentencia().setInt(3, horario.getIdClase());
 			conexion.getSentencia().setString(4, horario.getModalidad());
-			conexion.getSentencia().setInt(5, horario.getFechaInicion());
-			conexion.getSentencia().setInt(6, horario.getFechaFinal());
+			conexion.getSentencia().setDate(5, horario.getFechaInicion());
+			conexion.getSentencia().setDate(6, horario.getFechaFinal());
 			conexion.modificacion();
 		} catch (SQLException e) {
 			System.out.println(e.getSQLState());
@@ -51,8 +50,8 @@ public class HorarioView {
 		String Paralelo;
 		String Modalidad;	
 		int IdClase;
-		int fechaInicio;
-		int fechaFinal;	
+		Date fechaInicio;
+		Date fechaFinal;	
 		int codigoHorario = InputTypesUniversidad.readInt("Código del horario: ", scanner);
 		String sql = "select * from horarios where código = ?";
 		conexion.consulta(sql);
@@ -62,8 +61,8 @@ public class HorarioView {
 			Paralelo = resultSet.getString("Paralelo");
 			Modalidad = resultSet.getString("Modalidad");
 			IdClase=resultSet.getInt("IdClase");
-			fechaInicio=resultSet.getInt("FechaInicio");
-			fechaFinal=resultSet.getInt("FechaFinal");
+			fechaInicio=resultSet.getDate("FechaInicio");
+			fechaFinal=resultSet.getDate("FechaFinal");
 
 			horario = new Horario(codigoHorario, Paralelo,IdClase, Modalidad, fechaInicio,fechaFinal);
 		} else {
@@ -79,8 +78,8 @@ public class HorarioView {
 		conexion.getSentencia().setString(2, horario.getParalelo());
 		conexion.getSentencia().setString(3, horario.getModalidad());
 		conexion.getSentencia().setInt(4, horario.getIdClase());
-		conexion.getSentencia().setInt(5, horario.getFechaInicion());
-		conexion.getSentencia().setInt(6, horario.getFechaFinal());
+		conexion.getSentencia().setDate(5, horario.getFechaInicion());
+		conexion.getSentencia().setDate(6, horario.getFechaFinal());
 		conexion.modificacion();
 	}
 	public void listarHorario() throws SQLException {
@@ -93,8 +92,8 @@ public class HorarioView {
 					resultSet.getString("Paralelo"),
 					resultSet.getInt("IdClase"),
 					resultSet.getString("Modalidad"),
-					resultSet.getInt("FechaInicio"),
-					resultSet.getInt("FechaFinal"));
+					resultSet.getDate("FechaInicio"),
+					resultSet.getDate("FechaFinal"));
 			System.out.println(horario);
 		}
 	}

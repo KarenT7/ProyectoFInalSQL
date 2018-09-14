@@ -1,5 +1,9 @@
 package General;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class InputTypesUniversidad {
@@ -85,6 +89,20 @@ public class InputTypesUniversidad {
 		}
 
 		return valor;
+	}
+	public static Date leerFecha(String msg, Scanner leer) {
+		Date fecha;
+		DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+		while (true) {
+			System.out.print(msg);
+			try {
+				fecha = (Date) formato.parse(leer.nextLine());
+				return fecha;
+			} catch (ParseException e) {
+				System.out.println("Error en el formato de fecha");
+			}
+		}
 	}
 	
 }

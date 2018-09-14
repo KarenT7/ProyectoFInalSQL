@@ -112,10 +112,10 @@ public class MenuHorario {
 				horario.setModalidad(InputTypesUniversidad.readString("Ingrese la nueva modalidad: ", scanner));
 				break;
 			case 5:
-				horario.setFechaInicion(InputTypesUniversidad.readInt("Ingrese la nueva fecha de inicio: ", scanner));
+				horario.setFechaInicion(InputTypesUniversidad.leerFecha("Ingrese la nueva fecha de inicio: ", scanner));
 				break;
 			case 6:
-				horario.setFechaFinal(InputTypesUniversidad.readInt("Ingrese la nueva fecha de finalizacion: ", scanner));
+				horario.setFechaFinal(InputTypesUniversidad.leerFecha("Ingrese la nueva fecha de finalizacion: ", scanner));
 				break;
 				
 			}
