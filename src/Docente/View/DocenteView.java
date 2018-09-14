@@ -74,7 +74,7 @@ private Scanner scanner;
 
 		System.out.println(docente);
 		MenuDocente.ModificarDocente(scanner, docente);
-		sql = "update categoría set nombre = ?, descripción = ? where código = ?";
+		sql = "update docente set nombre = ?, descripción = ? where código = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, docente.getCodigoDocente());

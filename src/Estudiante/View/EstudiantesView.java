@@ -84,7 +84,7 @@ private Scanner scanner;
 
 		System.out.println(estudiante);
 		MenuEstudiante.ModificarEstudiante(scanner,estudiante);
-		sql = "update categoría set nombre = ?, descripción = ? where código = ?";
+		sql = "update estudiante set nombre = ?, descripción = ? where código = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, estudiante.getCodigoEstudiante());

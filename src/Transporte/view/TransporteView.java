@@ -73,7 +73,7 @@ private Scanner scanner;
 
 		System.out.println(vehiculo);
 		MenuTransporte.ModificarVehiculo(scanner, vehiculo);
-		sql = "update categoría set nombre = ?, descripción = ? where código = ?";
+		sql = "update transporte set nombre = ?, descripción = ? where código = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, vehiculo.getCodigoVehiculo());
