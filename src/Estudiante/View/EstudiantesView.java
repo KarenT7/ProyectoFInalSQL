@@ -83,7 +83,7 @@ private Scanner scanner;
 		}
 
 		System.out.println(estudiante);
-		MenuEstudiante.encabezadoModificarEstudiante(scanner);
+		MenuEstudiante.ModificarEstudiante(scanner,estudiante);
 		sql = "update categoría set nombre = ?, descripción = ? where código = ?";
 
 		conexion.consulta(sql);
