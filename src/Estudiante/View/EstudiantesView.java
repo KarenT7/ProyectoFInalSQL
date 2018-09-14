@@ -60,8 +60,6 @@ private Scanner scanner;
 		String Direccion;
 		boolean PAA;
 		int IdCLase;
-//		String Campus;
-		//String Carrera;
 			
 		int codigoEstudiante = InputTypesUniversidad.readInt("Código del estudiante: ", scanner);
 		String sql = "select * from estudiante where código = ?";
@@ -85,7 +83,7 @@ private Scanner scanner;
 		}
 
 		System.out.println(estudiante);
-		MenuEstudiante.ModificarEstudiante(scanner, estudiante);
+		MenuEstudiante.encabezadoModificarEstudiante(scanner);
 		sql = "update categoría set nombre = ?, descripción = ? where código = ?";
 
 		conexion.consulta(sql);

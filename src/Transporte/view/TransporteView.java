@@ -8,6 +8,7 @@ import java.util.Scanner;
 import Control.Conexion;
 import General.InputTypesUniversidad;
 import Transporte.entity.Transporte;
+import Transporte.entity.VehiculoNoRegistrado;
 
 public class TransporteView {
 private Conexion conexion;
@@ -43,76 +44,59 @@ private Scanner scanner;
 	}
 	//teamviewer
 	
-	public void updateVehiculo() throws SQLException {
+	public void updateVehiculo() throws SQLException, VehiculoNoRegistrado {
 		ResultSet resultSet;
 		Transporte vehiculo;
-		String Nombre;
-		String Apellido;
-		int codigoCuenta;
-		int CI;
-		int fechaNacimiento;
-		int telefono;
-		String Direccion;
-		boolean PAA;
-		int IdCLase;
-//		String Campus;
-		//String Carrera;
+		String placa;
+		String marca;
+		int codigoEstudiante;
+	
+		String color;
+		boolean soat;
 			
-		int codigoEstudiante = InputTypesUniversidad.readInt("Código del estudiante: ", scanner);
-		String sql = "select * from estudiante where código = ?";
+		int codigoVehiculo = InputTypesUniversidad.readInt("Código del vehiculo: ", scanner);
+		String sql = "select * from transporte where código = ?";
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, codigoEstudiante);
+		conexion.getSentencia().setInt(1, codigoVehiculo);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			Nombre = resultSet.getString("Nombres");
-			Apellido = resultSet.getString("Apellidos");
-			codigoCuenta=resultSet.getInt("codigoCuenta");
-			CI=resultSet.getInt("CI");
-			fechaNacimiento=resultSet.getInt("FechaNacimiento");
-			telefono=resultSet.getInt("Telefono");
-			Direccion=resultSet.getString("Direccion");
-			PAA=resultSet.getBoolean("PAA");
-			IdCLase=resultSet.getInt("IdCLase");
+			placa = resultSet.getString("Placa");
+			marca = resultSet.getString("Marca");
+			codigoEstudiante=resultSet.getInt("codigoCuenta");
+			color=resultSet.getString("Color");
+			soat=resultSet.getBoolean("Soat");
 			
-			estudiante = new Estudiante(codigoEstudiante,codigoCuenta, Nombre,Apellido, fechaNacimiento, telefono, Direccion, PAA,CI,IdCLase);
+			vehiculo = new Transporte(codigoVehiculo,codigoEstudiante, placa,marca, color, soat);
 		} else {
-			throw new EstudianteNoRegistrado();
+			throw new VehiculoNoRegistrado();
 		}
 
-		System.out.println(estudiante);
-		MenuEstudiante.ModificarEstudiante(scanner, estudiante);
+		System.out.println(vehiculo);
+		MenuTransporte.ModificarVehiculo(scanner, vehiculo);
 		sql = "update categoría set nombre = ?, descripción = ? where código = ?";
 
 		conexion.consulta(sql);
-		conexion.getSentencia().setInt(1, estudiante.getCodigoEstudiante());
-		conexion.getSentencia().setInt(2, estudiante.getCodigoCuenta());
-		conexion.getSentencia().setString(3, estudiante.getNombre());
-		conexion.getSentencia().setString(4, estudiante.getApellido());
-		conexion.getSentencia().setInt(5, estudiante.getCI());
-		conexion.getSentencia().setInt(6, estudiante.getFechaNacimiento());
-		conexion.getSentencia().setInt(7, estudiante.getTelefono());
-		conexion.getSentencia().setString(8,estudiante.getDireccion());
-		conexion.getSentencia().setBoolean(9, estudiante.isPAA());
-		conexion.getSentencia().setInt(10, estudiante.getIdCLase());
+		conexion.getSentencia().setInt(1, vehiculo.getCodigoVehiculo());
+		conexion.getSentencia().setInt(2, vehiculo.getCodigoEstudiante());
+		conexion.getSentencia().setString(3, vehiculo.getPlaca());
+		conexion.getSentencia().setString(4, vehiculo.getMarca());
+		conexion.getSentencia().setString(5,vehiculo.getColor());
+		conexion.getSentencia().setBoolean(6, vehiculo.isSoat());
 		conexion.modificacion();
 	}
-	public void listarEstudiate() throws SQLException {
-		Estudiante estudiante;
-		String sql = "select * from estudiante ";
+	public void listarVehiculo() throws SQLException {
+		Transporte transporte;
+		String sql = "select * from transporte ";
 		conexion.consulta(sql);
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
-			estudiante = new Estudiante(resultSet.getInt("CodigoEstudiante"),
-					resultSet.getInt("CodigoCuenta"), 
-					resultSet.getString("Nombres"),
-					resultSet.getString("Apellidos"),
-					resultSet.getInt("FechaNacimiento"),
-					resultSet.getInt("Telefono"),
-					resultSet.getString("Direccion"),
-					resultSet.getBoolean("PAA"),
-					resultSet.getInt("CI"),
-					resultSet.getInt("IdClase"));
-			System.out.println(estudiante);
+			transporte = new Transporte(resultSet.getInt("CodigoVehiculo"),
+					resultSet.getInt("CodigoEstudiante"), 
+					resultSet.getString("Placa"),
+					resultSet.getString("Marca"),
+					resultSet.getString("Color"),
+					resultSet.getBoolean("Soat"));
+			System.out.println(transporte);
 		}
 	}
 }

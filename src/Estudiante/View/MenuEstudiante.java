@@ -19,11 +19,12 @@ public class MenuEstudiante {
 			System.out.println("1.Ingresar Estudiante: ");
 			System.out.println("2.Listar Estudiantes: ");
 			System.out.println("3.Eliminar Estudiante:");
+			System.out.println("4.Modificar Estudiante:");
 			System.out.println("0.Salir");
 			System.out.println();
 
 			opcion=InputTypesUniversidad.readInt("¿Su Opcion?", scanner);
-			if(opcion >=0 && opcion<=3)
+			if(opcion >=0 && opcion<=4)
 			{return opcion;}
 		}
 
@@ -56,10 +57,16 @@ public class MenuEstudiante {
 					e.printStackTrace();
 				}
 				break;
+			case 4:
+				try {
+					estudiantesView.update();
+				} catch (EstudianteNoRegistrado e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
-	private static int encabezadoModificarEstudiante(Scanner scanner) {
+	public static int encabezadoModificarEstudiante(Scanner scanner) {
 		int opcion;
 
 		while (true) {
@@ -80,7 +87,7 @@ public class MenuEstudiante {
 
 			opcion = InputTypesUniversidad.readInt("¿Su opción? ", scanner);
 
-			if (opcion >= 0 && opcion <= 2) {
+			if (opcion >= 0 && opcion <= 10) {
 				return opcion;
 			}
 		}
