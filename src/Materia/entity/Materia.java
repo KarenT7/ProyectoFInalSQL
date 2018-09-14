@@ -3,14 +3,14 @@ package Materia.entity;
 public class Materia {
 private int CodigoMateria;
 private int Creditos;
-private boolean Estado;
+private String Estado;
 private int IdCarrera;
 private int IdClase;
-public Materia(int codigoMateria, int creditos, boolean estado, int idCarrera, int idClase) {
+public Materia(int codigoMateria, int creditos, String estado2, int idCarrera, int idClase) {
 	super();
 	CodigoMateria = codigoMateria;
 	Creditos = creditos;
-	Estado = estado;
+	Estado = estado2;
 	IdCarrera = idCarrera;
 	IdClase = idClase;
 }
@@ -26,10 +26,10 @@ public int getCreditos() {
 public void setCreditos(int creditos) {
 	Creditos = creditos;
 }
-public boolean isEstado() {
+public String getEstado() {
 	return Estado;
 }
-public void setEstado(boolean estado) {
+public void setEstado(String estado) {
 	Estado = estado;
 }
 public int getIdCarrera() {
