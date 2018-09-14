@@ -36,7 +36,7 @@ public class ClasesView {
 	
 		public void deleteClase() throws SQLException {
 			int idClase = InputTypes.readInt("Código identificacion de la clase: ", scanner);
-			String sql = "delete " + "from clase " + "where idClase = ?";
+			String sql = "delete " + "from clase " + "where IdClase = ?";
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, idClase);
 			conexion.modificacion();

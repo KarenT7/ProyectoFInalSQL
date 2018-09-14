@@ -15,7 +15,7 @@ public class NotasYfaltas {
 		this.notaFinal = notaFinal;
 	}
 
-	public Integer getIdClase() {
+	public int  getIdClase() {
 		return idClase;
 	}
 
@@ -53,7 +53,7 @@ public class NotasYfaltas {
 		return "NotasYfaltas [idClase=" + idClase + ", faltas=" + faltas + ", parcial=" + parcial + ", notaFinal="
 				+ notaFinal + "]";
 	}
-
+/*******************************************
 	public boolean equals(Object o) {
 		boolean respuesta = false;
 		if ( o != null) {
@@ -68,6 +68,6 @@ public class NotasYfaltas {
 	public int hashCode() {
 		return this.getIdClase().hashCode();
 	}
-	
+	***************************************/
 
 }

@@ -11,24 +11,23 @@ import registroNotasYFaltas.entity.NotasYfaltas;
 import universidad.control.Conexion;
 import universidad.view.InputTypes;
 
-public class notasYfaltasView {
+public class NotasYfaltasView {
 	private Conexion conexion;
 	private Scanner scanner;
 
-	public notasYfaltasView(Conexion conexion, Scanner scanner) {
+	public NotasYfaltasView(Conexion conexion, Scanner scanner) {
 		this.conexion = conexion;
 		this.scanner = scanner;
 	}
 
 	public void addNotasYfaltas() {
 		NotasYfaltas notasYfaltas = RegistroNotasYfaltas.ingresarNotasYfaltas(scanner);
-		String sql = "Insert into NotasYfaltas ( faltas, parcial, notaFinal)" + "values(?,?,?)";
+		String sql = "Insert into notasyfaltas ( Faltas, Parcial, NotaFinal)" + "values(?,?,?)";
 		try {
 			conexion.consulta(sql);
-			conexion.getSentencia().setInt(1, notasYfaltas.getIdClase());
-			conexion.getSentencia().setInt(2, notasYfaltas.getFaltas());
-			conexion.getSentencia().setInt(3, notasYfaltas.getParcial());
-			conexion.getSentencia().setInt(4, notasYfaltas.getNotaFinal());
+			conexion.getSentencia().setInt(1, notasYfaltas.getFaltas());
+			conexion.getSentencia().setInt(2, notasYfaltas.getParcial());
+			conexion.getSentencia().setInt(3, notasYfaltas.getNotaFinal());
 
 			conexion.modificacion();
 		} catch (SQLException e) {
@@ -38,7 +37,7 @@ public class notasYfaltasView {
 
 	public void deleteNotasYfaltas() throws SQLException {
 		int idClase = InputTypes.readInt("Código identificacion de la clase: ", scanner);
-		String sql = "delete " + "from notasYfaltas " + "where id = ?";
+		String sql = "delete " + "from notasyfaltas " + "where IdClase = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, idClase);
 		conexion.modificacion();
@@ -51,7 +50,7 @@ public class notasYfaltasView {
 		int parcial;
 		int notaFinal ;
 		int idClase = InputTypes.readInt("Identificacion del Código de la Clase: ", scanner);
-		String sql = "select * from clase where id = ?";
+		String sql = "select * from notasyfaltas where IdClase = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, idClase);
 		resultSet = conexion.resultado();
@@ -67,12 +66,12 @@ public class notasYfaltasView {
 		System.out.println(notasYfaltas);
 		MenuNotasYfaltas.menuModificar(scanner, notasYfaltas);
 
-		sql = "update clase set codigoDocente = ?, idSemestre = ? where id = ?";
+		sql = "update clase set Faltas = ?, Parcial = ?, NotaFinal = ?, where IdClase = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, notasYfaltas.getFaltas());
 		conexion.getSentencia().setInt(2, notasYfaltas.getParcial());
-		conexion.getSentencia().setInt(2, notasYfaltas.getNotaFinal());
+		conexion.getSentencia().setInt(3, notasYfaltas.getNotaFinal());
 
 		conexion.modificacion();
 	}

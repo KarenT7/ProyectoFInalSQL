@@ -24,8 +24,7 @@ public class AulaView {
 			String sql = "Insert into aula ( IdClase)" + "values(?)";
 			try {
 			conexion.consulta(sql);
-			conexion.getSentencia().setInt(1, aula.getIdAula());
-			conexion.getSentencia().setInt(2, aula.getIdClase());
+			conexion.getSentencia().setInt(1, aula.getIdClase());
 			conexion.modificacion();
 			} catch (SQLException e) {
 				System.out.println(e.getSQLState());
@@ -34,7 +33,7 @@ public class AulaView {
 	
 		public void deleteAula() throws SQLException {
 			int idClase = InputTypes.readInt("Código identificacion del aula: ", scanner);
-			String sql = "delete " + "from aula " + "where idAula = ?";
+			String sql = "delete " + "from aula " + "where IdAula = ?";
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, idClase);
 			conexion.modificacion();
@@ -61,7 +60,7 @@ public class AulaView {
 		System.out.println(aula);
 		MenuAula.menuModificar(scanner, aula);
 
-		sql = "update aula set IdClase = ?,   where IdClase = ?";
+		sql = "update aula set IdClase = ?,   where IdAula = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, aula.getIdClase());

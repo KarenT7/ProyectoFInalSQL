@@ -10,7 +10,7 @@ public class Aula {
 		this.idClase = idClase;
 	}
 
-	public Integer getIdAula() {
+	public int getIdAula() {
 		return idAula;
 	}
 
@@ -30,7 +30,7 @@ public class Aula {
 	public String toString() {
 		return "Aula [idAula=" + idAula + ", idClase=" + idClase + "]";
 	}
-
+/*********************************************
 	public boolean equals(Object o) {
 		boolean respuesta = false;
 		if ( o != null) {
@@ -45,6 +45,6 @@ public class Aula {
 	public int hashCode() {
 		return this.getIdAula().hashCode();
 	}
-	
+	*****************************************/
 
 }

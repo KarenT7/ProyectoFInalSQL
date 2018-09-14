@@ -18,7 +18,7 @@ public class Cuenta {
 		this.planDePagos = planDePagos;
 	}
 
-	public Integer getCodigoCuenta() {
+	public int getCodigoCuenta() {
 		return codigoCuenta;
 	}
 
@@ -64,7 +64,7 @@ public class Cuenta {
 		return "Cuenta [codigoCuenta=" + codigoCuenta + ", saldoApagar=" + saldoApagar + ", importePagado="
 				+ importePagado + ", descuentoBeca=" + descuentoBeca + ", planDePagos=" + planDePagos + "]";
 	}
-
+/****************************************************************
 	public boolean equals(Object o) {
 		boolean respuesta = false;
 		if ( o != null) {
@@ -79,6 +79,6 @@ public class Cuenta {
 	public int hashCode() {
 		return this.getCodigoCuenta().hashCode();
 	}
-	
+	***************************************************************/
 
 }

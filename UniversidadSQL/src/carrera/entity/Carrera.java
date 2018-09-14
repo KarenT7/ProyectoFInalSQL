@@ -24,7 +24,7 @@ public class Carrera {
 		this.nombreCarrera = nombreCarrera;
 	}
 
-	public Integer getIdCarrera() {
+	public int getIdCarrera() {
 		return idCarrera;
 	}
 
@@ -36,7 +36,7 @@ public class Carrera {
 	public String toString() {
 		return "Carrera [idCarrera=" + idCarrera + ", nombreCarrera=" + nombreCarrera + "]";
 	}
-
+/*************************************************
 	public boolean equals(Object o) {
 		boolean respuesta = false;
 		if (o != null) {
@@ -51,5 +51,5 @@ public class Carrera {
 	public int hashCode() {
 		return this.getIdCarrera().hashCode();
 	}
-
+************************************************/
 }

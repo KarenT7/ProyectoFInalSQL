@@ -21,11 +21,10 @@ public class CarreraView {
 
 	public void addCarrera() {
 		Carrera carrera = RegistroCarrera.ingresarCarrera(scanner);
-			String sql = "Insert into Clase ( codigoDocente, idSemestre)" + "values(?,?)";
+			String sql = "Insert into carrera ( nombre)" + "values(?)";
 			try {
 			conexion.consulta(sql);
-			conexion.getSentencia().setInt(1, carrera.getIdCarrera());
-			conexion.getSentencia().setString(2, carrera.getNombreCarrera());
+			conexion.getSentencia().setString(1, carrera.getNombreCarrera());
 			conexion.modificacion();
 			} catch (SQLException e) {
 				System.out.println(e.getSQLState());
@@ -49,7 +48,7 @@ public class CarreraView {
 		 
 		 String nombreCarrera;
 		 int idCarrera = InputTypes.readInt("Identificacion del Código de la Carrera: ", scanner);
-		String sql = "select * from clase where IdCarrera = ?";
+		String sql = "select * from carrera where IdCarrera = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, idCarrera);
 		resultSet = conexion.resultado();
@@ -63,7 +62,7 @@ public class CarreraView {
 		System.out.println(carrera);
 		MenuCarrera.menuModificar(scanner, carrera);
 
-		sql = "update clase set NombreCarrera = ?, where NombreCarrera = ?";
+		sql = "update carrera set NombreCarrera = ?, where IdCarrera = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setString(1, carrera.getNombreCarrera());

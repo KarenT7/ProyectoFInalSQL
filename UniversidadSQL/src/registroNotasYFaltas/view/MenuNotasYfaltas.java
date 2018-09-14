@@ -30,7 +30,7 @@ public class MenuNotasYfaltas {
 
 	}
 
-	public static void menuNotasYfaltas(Scanner scanner, notasYfaltasView notasYfaltasV) {
+	public static void menuNotasYfaltas(Scanner scanner, NotasYfaltasView notasYfaltasV) {
 
 		boolean salir = false;
 		while (!salir) {

@@ -13,7 +13,7 @@ public class Clase {
 	}
 
 	
-	public Integer getIdClase() {
+	public int getIdClase() {
 		return idClase;
 	}
 
@@ -49,7 +49,7 @@ public class Clase {
 		return "Clase [idClase=" + idClase + ", codigoDocente=" + codigoDocente + ", idSemestre=" + idSemestre + "]";
 	}
 
-	
+	/*************************************************
 	public boolean equals(Object o) {
 		boolean respuesta = false;
 		if ( o != null) {
@@ -60,10 +60,10 @@ public class Clase {
 		}
 		return respuesta;
 	}
-	
 	public int hashCode() {
 		return this.getIdClase().hashCode();
 	}
 	
+	*************************************************/
 
 }

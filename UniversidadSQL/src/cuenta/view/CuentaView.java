@@ -22,7 +22,7 @@ public class CuentaView {
 
 	public void addCuenta() {
 		Cuenta cuenta = RegistroCuenta.ingresarCuenta(scanner);
-			String sql = "Insert into Clase ( saldoApagar, importePagado, descuentoBeca, planDePagos)" + "values(?,?,?,?)";
+			String sql = "Insert into cuenta( SaldoPagar, ImportePagado, DescuentoBeca, PlanDePagos)" + "values(?,?,?,?)";
 			try {
 			conexion.consulta(sql);
 			conexion.getSentencia().setDouble(1, cuenta.getSaldoApagar());
@@ -38,7 +38,7 @@ public class CuentaView {
 	
 		public void deleteCuenta() throws SQLException {
 			int codigoCuenta = InputTypes.readInt("Código identificacion de la cuenta: ", scanner);
-			String sql = "delete " + "from cuenta " + "where codigo = ?";
+			String sql = "delete " + "from cuenta " + "where CodigoCuenta = ?";
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, codigoCuenta);
 			conexion.modificacion();
@@ -53,7 +53,7 @@ public class CuentaView {
 		double descuentoBeca;
 		String planDePagos;
 		int codigoCuenta = InputTypes.readInt("Identificacion del Código de la cuenta: ", scanner);
-		String sql = "select * from cuenta where código = ?";
+		String sql = "select * from cuenta where CodigoCuenta = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, codigoCuenta);
 		resultSet = conexion.resultado();
@@ -71,7 +71,7 @@ public class CuentaView {
 		System.out.println(cuenta);
 		MenuCuenta.menuModificar(scanner, cuenta);
 
-		sql = "update clase set codigoDocente = ?, idSemestre = ? where id = ?";
+		sql = "update cuenta set SaldoPagar = ?, ImportePagado = ?, DescuentoBeca = ?, PlanDePagos = ?,  where CodigoCuenta = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setDouble(1, cuenta.getSaldoApagar());

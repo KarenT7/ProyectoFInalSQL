@@ -14,7 +14,7 @@ public class Semestre {
 		this.anio = anio;
 	}
 
-	public Integer getIdSemestre() {
+	public int getIdSemestre() {
 		return idSemestre;
 	}
 
@@ -42,7 +42,7 @@ public class Semestre {
 	public String toString() {
 		return "Semestre [idSemestre=" + idSemestre + ", modulo=" + modulo + ", anio=" + anio + "]";
 	}
-
+/*
 	public boolean equals(Object o) {
 		boolean respuesta = false;
 		if ( o != null) {
@@ -57,6 +57,6 @@ public class Semestre {
 	public int hashCode() {
 		return this.getIdSemestre().hashCode();
 	}
-	
+	*/
 
 }

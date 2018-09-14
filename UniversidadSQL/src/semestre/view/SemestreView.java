@@ -24,9 +24,8 @@ public class SemestreView {
 			String sql = "Insert into Semestre ( modulo, anio)" + "values(?,?)";
 			try {
 			conexion.consulta(sql);
-			conexion.getSentencia().setInt(1, semestre.getIdSemestre());
-			conexion.getSentencia().setInt(2, semestre.getModulo());
-			conexion.getSentencia().setDate(3, semestre.getAnio());
+			conexion.getSentencia().setInt(1, semestre.getModulo());
+			conexion.getSentencia().setDate(2, semestre.getAnio());
 			conexion.modificacion();
 			} catch (SQLException e) {
 				System.out.println(e.getSQLState());
@@ -36,7 +35,7 @@ public class SemestreView {
 	
 		public void deleteSemestre() throws SQLException {
 			int idSemestre = InputTypes.readInt("Código identificacion del semestre: ", scanner);
-			String sql = "delete " + "from clase " + "where id = ?";
+			String sql = "delete " + "from semestre " + "where IdSemestre = ?";
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, idSemestre);
 			conexion.modificacion();
@@ -46,11 +45,11 @@ public class SemestreView {
 
 	public void updateSemestre() throws  SQLException {
 		ResultSet resultSet;
-		Semestre semestre = null;
+		Semestre semestre = null ;
 		int  modulo;
 		Date anio;
-		int idSemestre = InputTypes.readInt("Identificacion del Código del semestre: ", scanner);
-		String sql = "select * from semestre where código = ?";
+		int idSemestre = InputTypes.readInt("Identificacion del semestre: ", scanner);
+		String sql = "select * from semestre where IdSemestre = ?";
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, idSemestre);
 		resultSet = conexion.resultado();
@@ -65,7 +64,7 @@ public class SemestreView {
 		System.out.println(semestre);
 		MenuSemestre.menuModificar(scanner, semestre);
 
-		sql = "update semestre set modulo = ?, anio = ? where id = ?";
+		sql = "update semestre set modulo = ?, anio = ? where IdSemestre = ?";
 
 		conexion.consulta(sql);
 		conexion.getSentencia().setInt(1, semestre.getModulo());

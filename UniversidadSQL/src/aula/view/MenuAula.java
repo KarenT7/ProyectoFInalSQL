@@ -29,7 +29,7 @@ public class MenuAula {
 
 	}
 
-	public static void menuClase(Scanner scanner, AulaView aulaV) {
+	public static void menuAula(Scanner scanner, AulaView aulaV) {
 
 		boolean salir = false;
 		while (!salir) {
@@ -70,8 +70,7 @@ public class MenuAula {
 			}
 		}
 	}
-	private int  idAula;	
-	private int idClase;
+
 
 
 	private static int encabezadoModificar(Scanner scanner) {
@@ -108,4 +107,6 @@ public class MenuAula {
 			}
 		}
 	}
+
+
 }
