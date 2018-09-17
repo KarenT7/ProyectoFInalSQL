@@ -54,19 +54,33 @@ public class InputTypes {
 		return decimal;
 	}
 
-	public static Date readDate(String msg, Scanner leer) {
+	public static Date readDate(String msg, Scanner scanner) {
 		Date fecha;
 		DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
 		while (true) {
 			System.out.print(msg);
 			try {
-				fecha = formato.parse(leer.nextLine());
+				fecha = formato.parse(scanner.nextLine());
 				return fecha;
 			} catch (ParseException e) {
 				System.out.println("Error en el formato de fecha");
 			}
 		}
+		/****************
+		Date fecha = null;
+		while(true) {
+			SimpleDateFormat sdf = new  SimpleDateFormat("dd/MM/yyyy");
+			try {
+				System.out.print(msg);
+				System.out.print("  ");
+				fecha = sdf.parse(scanner.nextLine());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		return fecha;
+		}
+		**********/
 	}
 
 	public static boolean readBoolean(String mensaje, Scanner scanner) {

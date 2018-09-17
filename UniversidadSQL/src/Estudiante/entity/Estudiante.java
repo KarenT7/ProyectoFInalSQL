@@ -1,4 +1,5 @@
 package Estudiante.entity;
+//corregir fechanacimiento
 
 public class Estudiante {
 	private int codigoEstudiante;

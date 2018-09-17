@@ -9,6 +9,7 @@ import Horario.view.HorarioView;
 import Materia.View.MateriaView;
 import Transporte.view.TransporteView;
 import aula.view.AulaView;
+import carrera.entity.LaCarreraNoExisteEnUniversidad;
 import carrera.view.CarreraView;
 import clase.view.ClasesView;
 import cuenta.view.CuentaView;
@@ -87,7 +88,12 @@ public class MenuOficial {
 				semestre.view.MenuSemestre.menuSemestre(scanner, semestreV);
 				break;
 			case 5:
-				carrera.view.MenuCarrera.menuCarrera(scanner, carreraV);
+				try {
+					carrera.view.MenuCarrera.menuCarrera(scanner, carreraV);
+				} catch (LaCarreraNoExisteEnUniversidad e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;		
 			case 6:
 				clase.view.MenuClase.menuClase(scanner, claseV);

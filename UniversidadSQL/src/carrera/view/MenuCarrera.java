@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import carrera.entity.Carrera;
+import carrera.entity.LaCarreraNoExisteEnUniversidad;
 import universidad.view.InputTypes;
 
 public class MenuCarrera {
@@ -29,7 +30,7 @@ public class MenuCarrera {
 
 	}
 
-	public static void menuCarrera(Scanner scanner, CarreraView carreraV) {
+	public static void menuCarrera(Scanner scanner, CarreraView carreraV) throws LaCarreraNoExisteEnUniversidad {
 
 		boolean salir = false;
 		while (!salir) {
@@ -38,7 +39,11 @@ public class MenuCarrera {
 				salir = true;
 				break;
 			case 1:
-				carreraV.addCarrera();
+				try {
+					carreraV.addCarrera();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 				break;
 			case 2:
 				try {

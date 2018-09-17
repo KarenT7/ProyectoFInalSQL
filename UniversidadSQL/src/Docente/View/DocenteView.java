@@ -1,8 +1,8 @@
 package Docente.View;
 
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.Scanner;
 
 import Docente.entity.Docente;
@@ -19,23 +19,20 @@ public class DocenteView {
 		this.scanner = scanner;
 	}
 
-	public void addDocente() {
+	public void addDocente() throws SQLException {
 		Docente docente = RegistroDocente.ingresarDocente(scanner);
 		String sql = "Insert into docente ( Nombres,Apellidos,Titulacion,SeguroMedico,FechaDeNacimiento,Celular) "
-				+ "values(?,?,?,?,?,?,?)";
-		try {
+				+ "values(?,?,?,?,?,?)";
 			conexion.consulta(sql);
-//			conexion.getSentencia().setInt(1, docente.getCodigoDocente());
+		//conexion.getSentencia().setInt(1, docente.getCodigoDocente());
 			conexion.getSentencia().setString(1, docente.getNombre());
 			conexion.getSentencia().setString(2, docente.getApellido());
 			conexion.getSentencia().setString(3, docente.getGradoDeTitulacion());
-			conexion.getSentencia().setInt(4, docente.getNumeroSeguroMedico());
-			conexion.getSentencia().setInt(5, docente.getFechaNacimiento());
+			conexion.getSentencia().setInt(4, docente.getSeguroMedico());
+			conexion.getSentencia().setDate(5, new  java.sql.Date( docente.getFechaNacimiento().getTime()));
 			conexion.getSentencia().setInt(6, docente.getCelular());
 			conexion.modificacion();
-		} catch (SQLException e) {
-			System.out.println(e.getSQLState());
-		}
+		
 	}
 
 	public void deleteDocente() throws SQLException {
@@ -49,11 +46,11 @@ public class DocenteView {
 	public void updateDocente() throws SQLException, DocenteSinRegistro {
 		ResultSet resultSet;
 		Docente docente;
-		String Nombre;
-		String Apellido;
-		String GradoTitulacion;
+		String nombre;
+		String apellido;
+		String gradoTitulacion;
 		int seguroMedico;
-		int fechaNacimiento;
+		Date fechaNacimiento;
 		int celular;
 		int codigoDocente = InputTypes.readInt("Código del docente: ", scanner);
 		String sql = "select * from docente where CodigoDocente = ?";
@@ -61,15 +58,14 @@ public class DocenteView {
 		conexion.getSentencia().setInt(1, codigoDocente);
 		resultSet = conexion.resultado();
 		if (resultSet.next()) {
-			Nombre = resultSet.getString("Nombres");
-			Apellido = resultSet.getString("Apellidos");
-			fechaNacimiento = resultSet.getInt("FechaDeNacimiento");
+			nombre = resultSet.getString("Nombres");
+			apellido = resultSet.getString("Apellidos");
+			fechaNacimiento = resultSet.getDate("FechaDeNacimiento");
 			celular = resultSet.getInt("Celular");
-			GradoTitulacion = resultSet.getString("Titulacion");
+			gradoTitulacion = resultSet.getString("Titulacion");
 			seguroMedico = resultSet.getInt("SeguroMedico");
 
-			docente = new Docente(codigoDocente, Nombre, Apellido, fechaNacimiento, celular, GradoTitulacion,
-					seguroMedico);
+			docente = new Docente(codigoDocente, nombre, apellido, gradoTitulacion, seguroMedico, fechaNacimiento, celular);
 		} else {
 			throw new DocenteSinRegistro();
 		}
@@ -79,13 +75,13 @@ public class DocenteView {
 		sql = "update docente set Nombres = ?, Apellidos = ?, FechaDeNacimiento = ?, Celular = ?, Titulacion = ?, SeguroMedico = ? , where CodigoDocente = ?";
 
 		conexion.consulta(sql);
-//		conexion.getSentencia().setInt(1, docente.getCodigoDocente());
-		conexion.getSentencia().setString(1, docente.getNombre());
-		conexion.getSentencia().setString(2, docente.getApellido());
-		conexion.getSentencia().setString(3, docente.getGradoDeTitulacion());
-		conexion.getSentencia().setInt(4, docente.getNumeroSeguroMedico());
-		conexion.getSentencia().setInt(5, docente.getFechaNacimiento());
-		conexion.getSentencia().setInt(6, docente.getCelular());
+		conexion.getSentencia().setInt(1, docente.getCodigoDocente());
+		conexion.getSentencia().setString(2, docente.getNombre());
+		conexion.getSentencia().setString(3, docente.getApellido());
+		conexion.getSentencia().setString(4, docente.getGradoDeTitulacion());
+		conexion.getSentencia().setInt(5, docente.getSeguroMedico());
+		conexion.getSentencia().setDate(6, (java.sql.Date) docente.getFechaNacimiento());
+		conexion.getSentencia().setInt(7, docente.getCelular());
 		conexion.modificacion();
 	}
 
@@ -96,8 +92,8 @@ public class DocenteView {
 		ResultSet resultSet = conexion.resultado();
 		while (resultSet.next()) {
 			docente = new Docente(resultSet.getInt("CodigoDocente"), resultSet.getString("Nombres"),
-					resultSet.getString("Apellidos"), resultSet.getInt("FechaNacimiento"),
-					resultSet.getInt("SeguroMedico"), resultSet.getString("Titulacion"), resultSet.getInt("Celular"));
+					resultSet.getString("Apellidos"),resultSet.getString("Titulacion"), resultSet.getInt("SeguroMedico"), resultSet.getDate("FechaDeNacimiento"),
+					 resultSet.getInt("Celular"));
 			System.out.println(docente);
 		}
 	}
