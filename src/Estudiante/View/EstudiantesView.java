@@ -17,10 +17,10 @@ private Scanner scanner;
 		this.conexion = conexion;
 		this.scanner = scanner;
 	}
-	public void addEstudiante() {
+	public void addEstudiante() throws SQLException {
 		Estudiante estudiante = RegistroEstudiante.ingresarEstudiante(scanner);
-		String sql = "Insert into estudiante (codigoEstudiante,codigoCuenta, Nombre,Apellido, CI, fechaNacimiento, telefono, Direccion, PAA,IdClase) " + "values(?,?,?,?,?,?,?,?,?,?)";
-		try {
+		String sql = "Insert into estudiante (codigoEstudiante,codigoCuenta, Nombres,Apellidos, CI, fechaNacimiento, telefono, Direccion, PAA,IdClase) " + "values(?,?,?,?,?,?,?,?,?,?)";
+	
 			conexion.consulta(sql);
 			conexion.getSentencia().setInt(1, estudiante.getCodigoEstudiante());
 			conexion.getSentencia().setInt(2, estudiante.getCodigoCuenta());
@@ -33,9 +33,7 @@ private Scanner scanner;
 			conexion.getSentencia().setBoolean(9, estudiante.isPAA());
 			conexion.getSentencia().setInt(10, estudiante.getIdCLase());
 			conexion.modificacion();
-		} catch (SQLException e) {
-			System.out.println(e.getSQLState());
-		}
+		
 	}
 	
 	
